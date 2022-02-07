@@ -31,6 +31,59 @@
 
   <title>facebook_responsive_ui</title>
   <link rel="manifest" href="manifest.json">
+  
+      <style>
+        /* Style for Spinner */
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 48%;
+            left: 48%;
+        }
+        
+        .double-bounce1,
+        .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #007BEF;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+        
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        
+        @-webkit-keyframes sk-bounce {
+            0%,
+            100% {
+                -webkit-transform: scale(0.0)
+            }
+            50% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+        
+        @keyframes sk-bounce {
+            0%,
+            100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>    
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -100,5 +153,24 @@
       loadMainDartJs();
     }
   </script>
+  
+  <script src="main.dart.js" type="application/javascript">
+        // To show Preloaded until the document is ready
+        jQuery(document).ready(function() {
+            //Preloader
+            jQuery(window).on("load", function() {
+                preloaderFadeOutTime = 500;
+
+                function hidePreloader() {
+                    var wrapper = jQuery('.spinner-wrapper');
+                    var spinner = jQuery('.spinner');
+                    wrapper.fadeOut(preloaderFadeOutTime);
+                    spinner.fadeOut(preloaderFadeOutTime);
+                }
+                hidePreloader();
+            });
+        });    
+    </script>
+  
 </body>
 </html>
